@@ -1,0 +1,24 @@
+services:
+  client:
+    container_name: template
+    image: node:alpine
+    restart: unless-stopped
+    volumes:
+      - ./client:/app
+    ports:
+      - 3000:3000
+    command: >
+      sh -c "cd /app &&
+      npm install &&
+      npm run dev"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.whoami.rule=Host(`example.com`)"
+    #   - "traefik.http.routers.whoami.tls=true"
+    #   - "traefik.http.routers.whoami.tls.certresolver=myresolver"
+
+
+# networks:
+#   default:
+#     external: true
+#     name: www
